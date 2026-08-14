@@ -1,10 +1,9 @@
 name: DE
 
 on:
-  push:              # 每次 push 时触发
   schedule:
-   - cron: '0 */1 * * *' # 每3小时运行一次
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -24,7 +23,7 @@ jobs:
 
       - name: Run script and save output
         run: |
-          python py/DE.py > DE.txt
+          python py/DE.py 2>&1 | tee DE.txt
 
       - name: Commit result
         run: |

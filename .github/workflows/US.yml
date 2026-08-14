@@ -1,10 +1,9 @@
 name: US
 
 on:
-  push:              # 每次 push 时触发
   schedule:
-   - cron: '0 */1 * * *' # 每3小时运行一次
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -24,7 +23,7 @@ jobs:
 
       - name: Run script and save output
         run: |
-          python py/US.py > US.txt
+          python py/US.py 2>&1 | tee US.txt
 
       - name: Commit result
         run: |

@@ -1,9 +1,9 @@
 name: Cfxyz
 
 on:
-  push:              # 每次 push 时触发
   schedule:
-   - cron: '0 */1 * * *' # 每3小时运行一次
+    - cron: '0 */1 * * *'
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Run script and save output
         run: |
-          python py/Cfxyz.py > Cfxyz.txt
+          python py/Cfxyz.py 2>&1 | tee Cfxyz.txt
 
       - name: Commit result
         run: |
