@@ -58,6 +58,7 @@ async function fetchAndProcess(source) {
   const domain = new URL(info.url).hostname; // 获取当前 worker 域名
 
   const results = [];
+  let hasSpeedData = false;
   for (const line of lines) {
     const parts = line.trim().split('#');
     const ip = parts[0];
@@ -66,8 +67,10 @@ async function fetchAndProcess(source) {
     if (!ipRe.test(ip)) continue;
 
     const speed = parseSpeed(remark);
-    // 只保留速度 >= 4MB/s 的节点
-    if (speed >= 4) {
+    if (speed > 0) hasSpeedData = true;
+
+    // 无速度来源(speed=0)直接保留；有速度的只保留>=4MB/s
+    if (speed >= 4 || speed === 0) {
       const name = remark || ip;
       results.push({
         vless: buildVless(ip, name, '2026.vyou.ccwu.cc'),
@@ -76,24 +79,17 @@ async function fetchAndProcess(source) {
     }
   }
 
-  // 按速度降序排列
-  results.sort((a, b) => b.speed - a.speed);
-
-  // 按速度降序排列
-  results.sort((a, b) => b.speed - a.speed);
-
-  // 判断是否有有效的速度过滤结果
-  const hasValidSpeed = results.length > 0 && results[0].speed > 0;
-
-  // 如果有速度数据，取速度>=4MB/s的前10个；否则直接返回前10个
-  let top10;
   if (results.length === 0) {
     return { error: `No valid nodes found for ${info.name}`, available: Object.keys(SOURCE_MAP) };
-  } else if (hasValidSpeed) {
-    top10 = results.filter(r => r.speed >= 4).slice(0, 10);
-  } else {
-    top10 = results.slice(0, 10);
   }
+
+  // 按速度降序排列
+  results.sort((a, b) => b.speed - a.speed);
+
+  // 有速度数据时过滤>=4MB/s；无速度数据直接返回前10个
+  const top10 = hasSpeedData
+    ? results.filter(r => r.speed >= 4).slice(0, 10)
+    : results.slice(0, 10);
 
   return {
     name: info.name,
