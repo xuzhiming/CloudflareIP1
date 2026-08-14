@@ -76,9 +76,15 @@ async function fetchAndProcess(source) {
     }
   }
 
-  // 按速度降序排列，最多返回10个
+  // 按速度降序排列
   results.sort((a, b) => b.speed - a.speed);
-  const top10 = results.slice(0, 10);
+
+  // 判断是否有有效的速度过滤结果
+  const hasValidSpeed = results.length > 0 && results[0].speed > 0;
+  // 如果有速度数据，取速度>=4MB/s的前10个；否则直接返回前10个
+  const top10 = hasValidSpeed
+    ? results.filter(r => r.speed >= 4).slice(0, 10)
+    : results.slice(0, 10);
 
   return {
     name: info.name,
