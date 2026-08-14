@@ -57,7 +57,7 @@ def get_ip_country(ip):
         
         # 尝试使用freeipapi.com (不需要API密钥)
         try:
-            url = f"https://freeipapi.com/api/v1/info/{ip}"
+            url = f"https://free.freeipapi.com/api/json/{ip}"
             response = session.get(url, timeout=15)
             if response.status_code == 200:
                 data = response.json()
@@ -91,17 +91,16 @@ def get_ip_country(ip):
         except Exception as e:
             print(f"freeipapi.com错误 {ip}: {str(e)}")
 
-        # 尝试使用ip-api.com
+        # 尝试使用ipapi.is
         try:
-            url = f"http://ip-api.com/json/{ip}?fields=countryCode"
+            url = f"https://api.ipapi.is/?ip={ip}"
             response = session.get(url, timeout=15)
             if response.status_code == 200:
                 data = response.json()
-                if data.get('status') == 'success' and 'countryCode' in data:
-                    country_code = data['countryCode']
-                    return COUNTRY_CODES.get(country_code, country_code)
+                if 'cc' in data and data['cc']:
+                    return COUNTRY_CODES.get(data['cc'], data['cc'])
         except Exception as e:
-            print(f"ip-api.com错误 {ip}: {str(e)}")
+            print(f"ipapi.is错误 {ip}: {str(e)}")
 
         # 尝试使用ipwhois.app API (不需要API密钥)
         try:
@@ -390,8 +389,6 @@ def batch_query_ip_countries():
         results.append(f"{ip} {country}")
         
         # 添加足够的延迟以避免API请求过于频繁
-        if i < len(cleaned_ips) - 1:
-            time.sleep(3)  # 增加延迟到3秒
     
     # 将结果写入文件
     with open(IP_COUNTRIES_FILE, 'w', encoding='utf-8') as f:
