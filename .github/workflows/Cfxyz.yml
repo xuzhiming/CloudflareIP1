@@ -31,4 +31,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add Cfxyz.txt
           git commit -m "Auto update Cfxyz.txt [skip ci]" || echo "No changes to commit"
-          git push
+          git pull --rebase origin main && git push
