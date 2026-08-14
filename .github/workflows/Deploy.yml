@@ -1,0 +1,13 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages Deploy
+        run: |
+          curl -s -X POST "${{ secrets.CF_DEPLOY_HOOK }}"
+          echo "Cloudflare Pages deployment triggered"
