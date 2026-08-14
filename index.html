@@ -359,16 +359,38 @@
                 lines.forEach(function(line, idx) {
                     var parts = line.trim().split('#');
                     var ip = parts[0];
-                    var name = parts[1] || '节点' + (idx + 1);
+                    var remark = parts[1] || '';
                     if (!ipRe.test(ip)) return;
+
+                    // 解析速度标注，格式如: "【优选 Nodes】16.00 MB/s" 或 "【测速 Nodes】76.94MB/s"
+                    var speedMatch = remark.match(/([\d.]+)\s*(MB\/s|MB|mbps|Mbps|GB\/s|GB|KB\/s|KB|Kbit\/s)/i);
+                    var speedMbps = 0;
+                    if (speedMatch) {
+                        var val = parseFloat(speedMatch[1]);
+                        var unit = speedMatch[2].toUpperCase();
+                        if (unit.startsWith('GB')) val *= 1000;
+                        else if (unit.startsWith('KB')) val /= 1000;
+                        else if (unit.includes('MBIT') || unit === 'MBPS') val /= 8;
+                        speedMbps = val; // 转换为 MB/s
+                    }
+
                     links.push({
-                        name: name,
-                        link: tpl.replace('__IP__', ip).replace('__NAME__', name)
+                        name: remark || '节点' + (idx + 1),
+                        link: tpl.replace('__IP__', ip).replace('__NAME__', remark),
+                        speed: speedMbps,
+                        raw: line
                     });
                 });
 
-                var html = '<div class="stats-bar"><span>&#x1F4CA; 共生成 <strong>' + links.length + '</strong> 个节点</span><span>&#x1F517; 点击任意节点即可复制</span></div><ul>';
-                links.forEach(function(item, i) {
+                // 过滤速度 >= 4MB/s，按速度降序，取前10个
+                var MIN_SPEED = 4;
+                var filtered = links
+                    .filter(function(l) { return l.speed >= MIN_SPEED || l.speed === 0; })
+                    .sort(function(a, b) { return b.speed - a.speed; })
+                    .slice(0, 10);
+
+                var html = '<div class="stats-bar"><span>&#x1F4CA; 共生成 <strong>' + filtered.length + '</strong> 个节点（速度≥' + MIN_SPEED + 'MB/s）</span><span>&#x1F517; 点击任意节点即可复制</span></div><ul>';
+                filtered.forEach(function(item, i) {
                     html += '<li data-link="' + escapeHtml(item.link) + '" data-idx="' + i + '">';
                     html += '<span class="node-name">' + escapeHtml(item.name) + '</span>';
                     html += '<span class="node-link">' + escapeHtml(item.link) + '</span>';
