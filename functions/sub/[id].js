@@ -24,13 +24,14 @@ const SOURCE_MAP = {
 // 解析速度 (MB/s)
 function parseSpeed(remark) {
   if (!remark) return 0;
-  const match = remark.match(/([\d.]+)\s*(MB\/s|MB|mbps|Mbps|GB\/s|GB|KB\/s|KB|Kbit\/s)/i);
+  // 支持 "16.00 MB/s" 和 "76.94MB/s" 两种格式
+  const match = remark.match(/([\d.]+)\s*(MB\/s|MB|mbps|Mbps|GB\/s|GB|KB\/s|KB|Kbit\/s|Gbps)/i);
   if (!match) return 0;
   let val = parseFloat(match[1]);
   const unit = match[2].toUpperCase();
   if (unit.startsWith('GB')) val *= 1000;
   else if (unit.startsWith('KB')) val /= 1000;
-  else if (unit.includes('MBIT') || unit === 'MBPS') val /= 8;
+  else if (unit.includes('MBIT') || unit === 'MBPS' || unit === 'GBPS') val /= 8;
   return val;
 }
 
@@ -65,17 +66,24 @@ async function fetchAndProcess(source) {
     if (!ipRe.test(ip)) continue;
 
     const speed = parseSpeed(remark);
-    // 速度 >= 4MB/s 或没有速度标注的保留
-    if (speed >= 4 || speed === 0) {
+    // 只保留速度 >= 4MB/s 的节点
+    if (speed >= 4) {
       const name = remark || ip;
-      results.push(buildVless(ip, name, '2026.vyou.ccwu.cc'));
+      results.push({
+        vless: buildVless(ip, name, '2026.vyou.ccwu.cc'),
+        speed: speed
+      });
     }
   }
 
+  // 按速度降序排列，最多返回10个
+  results.sort((a, b) => b.speed - a.speed);
+  const top10 = results.slice(0, 10);
+
   return {
     name: info.name,
-    count: results.length,
-    lines: results
+    count: top10.length,
+    lines: top10.map(r => r.vless)
   };
 }
 
