@@ -1,30 +1,10 @@
-ipapi.is错误 162.159.0.8: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.8 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-162.159.0.8#sg 【新加坡】 SG
-ipapi.is错误 108.162.192.7: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.7 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
 108.162.192.7#sg 【新加坡】 SG
-ipapi.is错误 172.64.32.4: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=172.64.32.4 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-172.64.32.4#sg 【新加坡】 SG
-ipapi.is错误 108.162.192.4: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.4 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-108.162.192.4#sg 【新加坡】 SG
-ipapi.is错误 108.162.192.9: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.9 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-108.162.192.9#sg 【新加坡】 SG
-ipapi.is错误 162.159.0.6: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.6 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
+172.64.32.8#sg 【新加坡】 SG
 162.159.0.6#sg 【新加坡】 SG
-ipapi.is错误 162.159.0.1: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.1 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
+108.162.192.1#sg 【新加坡】 SG
+172.64.32.6#sg 【新加坡】 SG
+108.162.192.4#sg 【新加坡】 SG
+172.64.32.7#sg 【新加坡】 SG
+172.64.32.5#sg 【新加坡】 SG
+108.162.192.9#sg 【新加坡】 SG
 162.159.0.1#sg 【新加坡】 SG
-ipapi.is错误 162.159.0.2: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.2 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-162.159.0.2#sg 【新加坡】 SG
-ipapi.is错误 108.162.192.8: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.8 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-108.162.192.8#sg 【新加坡】 SG
-ipapi.is错误 108.162.192.6: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.6 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-108.162.192.6#sg 【新加坡】 SG
-ipapi.is错误 162.159.0.8: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.8 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 108.162.192.7: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.7 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 172.64.32.4: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=172.64.32.4 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 108.162.192.4: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.4 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 108.162.192.9: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.9 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 162.159.0.6: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.6 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 162.159.0.1: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.1 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 162.159.0.2: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=162.159.0.2 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 108.162.192.8: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.8 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
-ipapi.is错误 108.162.192.6: HTTPSConnectionPool(host='api.ipapi.is', port=443): Max retries exceeded with url: /?ip=108.162.192.6 (Caused by NewConnectionError("HTTPSConnection(host='api.ipapi.is', port=443): Failed to establish a new connection: [Errno 111] Connection refused"))
